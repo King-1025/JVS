@@ -124,7 +124,7 @@ void funJCDataCallback(JCLink_t nLinkID, PJCStreamFrame pFrame, LPVOID pUserData
 
 int testConnect(char *pIp, int nPort, int nChannel, char *pUser, char *pPassword)
 {
-	int linkid = JCSDK_Connect(pIp, nPort, nChannel, pUser, pPassword, FALSE, NULL);
+	int linkid = JCSDK_Connect(pIp, nPort, nChannel, pUser, pPassword, TRUE, NULL);
 	if(linkid < 0)
 	{
 		printf("[%s] Connect failed....\n", __FUNCTION__);
