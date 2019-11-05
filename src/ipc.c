@@ -13,6 +13,12 @@
 
 JCLink_t g_nLinkID = -1;
 
+char *ip;
+int port;
+int channel;
+char *user;
+char *password;
+
 int main(int argc, char* argv[])
 {
        int InitSDK(void);
@@ -35,13 +41,13 @@ int main(int argc, char* argv[])
 	      return 0;
 	}
 
-	char *ip = argv[1];
-	int port = atoi(argv[2]);
-	int channel = atoi(argv[3]);
-	char *user = argv[4];
-	char *password = argv[5];
+	ip = argv[1];
+	port = atoi(argv[2]);
+	channel = atoi(argv[3]);
+	user = argv[4];
+	password = argv[5];
 
-	sleep(3);
+//	sleep(3);
 
 	g_nLinkID = testConnect(ip, port, channel, user, password);
 	if(g_nLinkID < 0)
@@ -105,6 +111,7 @@ void funJCEventCallback(JCLink_t nLinkID, JCEventType etType, DWORD_PTR pData1, 
 
 	case JCET_ConTimeout://连接超时
 		printf("[%s] linkID_%d, type:%d connect timeout\n", __FUNCTION__, nLinkID, etType);
+	      g_nLinkID = testConnect(ip, port, channel, user, password);
 		break;
 
 	case JCET_DisconOK://断开连接成功
